@@ -6,6 +6,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import ar.com.eduacionit.app.domain.Producto;
+import ar.com.educacionit.app.ws.soap.dto.CreateProductoDTO;
 
 @WebService
 public interface ProductoWSService {
@@ -15,4 +16,10 @@ public interface ProductoWSService {
 	
 	@WebMethod
 	public List<Producto> findProductos();
+	
+	@WebMethod
+	public Producto createProducto(CreateProductoDTO producto);
+	
+	@WebMethod
+	public Producto udateProducto(Producto producto);
 }
