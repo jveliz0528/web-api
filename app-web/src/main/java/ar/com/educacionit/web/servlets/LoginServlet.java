@@ -19,15 +19,18 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String username = req.getParameter("username");
+		
 		String password = req.getParameter("password");
 		
-		if("pepe".equals(username) && password.equals(password)) {
+		if("pepe".equals(username) && password.equals("1234")) {
 			User user = new User(username);
 			req.getSession(true).setAttribute("user", user);
 			// redireccionar a productos.jsp
-			getServletContext().getRequestDispatcher("/productos.jsp").forward(req, resp);
+			// getServletContext().getRequestDispatcher("/productos.jsp").forward(req, resp);
+			resp.sendRedirect(req.getContextPath() + "/api/home");
 		}else {
-			
+			// redireccionar a loginFail.jsp
+			getServletContext().getRequestDispatcher("/loginFail.jsp").forward(req, resp);
 		}
 	}
 }

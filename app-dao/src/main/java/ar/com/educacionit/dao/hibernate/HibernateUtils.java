@@ -1,4 +1,4 @@
-package ar.com.educacionit.web.servlets;
+package ar.com.educacionit.dao.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -6,19 +6,15 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
-public class HibernateUtils2 {
+public class HibernateUtils {
 
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 
-	private HibernateUtils2() {
-		System.out.println("creado!!");
+	private HibernateUtils() {
 	}
 
 	// Hibernate 5:
 	private static SessionFactory buildSessionFactory() {
-		
-		SessionFactory sessionFactory = buildSessionFactory();
-		
 		try {
 			// Create the ServiceRegistry from hibernate.cfg.xml
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()//

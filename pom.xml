@@ -24,5 +24,7 @@
 		<module>app-domain</module>
 		<module>app-web</module>
     <module>app-ws-soap</module>
+    <module>app-dao</module>
+    <module>app-services</module>
   </modules>
 </project>

@@ -7,9 +7,13 @@
 		<location>/general-error.jsp</location>
 	</error-page>
 <!-- 
-	<error-page>
-		<exception-type>java.lang.NullPointerException</exception-type>
-		<location>/exception.jsp</location>
-	</error-page>
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>ar.com.educacionit.web.servlet.filters.AuthenticationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
  -->
 </web-app>

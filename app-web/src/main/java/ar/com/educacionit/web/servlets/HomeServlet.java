@@ -1,7 +1,6 @@
 package ar.com.educacionit.web.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ar.com.eduacionit.app.domain.Producto;
+import ar.com.educacionit.services.ProductoService;
+import ar.com.educacionit.services.exceptions.ServiceException;
+import ar.com.educacionit.services.impl.ProductoServiceImpl;
 
 @WebServlet(name = "HomeServlet", urlPatterns = "/api/home")
 public class HomeServlet extends HttpServlet {
@@ -22,8 +24,16 @@ public class HomeServlet extends HttpServlet {
 
 		System.out.println("funciona!!!");
 
+		ProductoService productoService = new ProductoServiceImpl();
+
 		// consultar a la db para obtener un producto
-		List<Producto> productos = findProductos();
+		List<Producto> productos;
+		
+		try {
+			productos = productoService.findProductos();
+		} catch (ServiceException e) {
+			throw new ServletException(e);
+		}
 
 		// guardar en la sesion los datos para mostrarlos luego en otro jsp
 		req.getSession().setAttribute("productos", productos);
@@ -31,16 +41,4 @@ public class HomeServlet extends HttpServlet {
 		// redireccionar a productos.jsp
 		getServletContext().getRequestDispatcher("/productos.jsp").forward(req, resp);
 	}
-	
-	public List<Producto> findProductos() {
-		List<Producto> lista =  new ArrayList<Producto>();
-		Producto producto = new Producto();
-		producto.setId(1L);
-		producto.setDescripcion("Pend driver");
-		producto.setCodigo("abc");
-		producto.setPrecio(175d);
-		lista.add(producto);
-		return lista;
-	}
-		
 }

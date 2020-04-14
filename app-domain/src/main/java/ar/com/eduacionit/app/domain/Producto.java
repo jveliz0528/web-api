@@ -1,5 +1,7 @@
 package ar.com.eduacionit.app.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "producto")
-public class Producto {
+public class Producto implements Serializable {
+
+	private static final long serialVersionUID = -2553612662693556620L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
