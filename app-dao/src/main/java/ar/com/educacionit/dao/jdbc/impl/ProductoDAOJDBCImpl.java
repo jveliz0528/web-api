@@ -155,4 +155,16 @@ public class ProductoDAOJDBCImpl implements ProductoDAO {
 
 		return producto;
 	}
+	
+	@Override
+	public Producto updateProducto(Producto producto) throws GenericExeption {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Producto deleteProducto(String codigoProducto) throws GenericExeption {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

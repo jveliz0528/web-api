@@ -12,4 +12,8 @@ public interface ProductoService {
 	public List<Producto> findProductos() throws ServiceException;
 
 	public Producto createProducto(Producto producto) throws ServiceException;
+	
+	public Producto updateProducto(Producto producto) throws ServiceException;
+
+	public Producto eliminarProducto(String codigoProducto) throws ServiceException;
 }

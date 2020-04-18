@@ -13,4 +13,8 @@ public interface ProductoDAO {
 	public List<Producto> findProductos() throws GenericExeption;
 
 	public Producto createProducto(Producto producto) throws DuplicateException, GenericExeption;
+	
+	public Producto updateProducto(Producto producto) throws GenericExeption;
+
+	public Producto deleteProducto(String codigoProducto) throws GenericExeption;
 }

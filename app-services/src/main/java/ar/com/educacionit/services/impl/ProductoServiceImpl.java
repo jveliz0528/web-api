@@ -51,4 +51,24 @@ public class ProductoServiceImpl implements ProductoService {
 			throw new ServiceException("Error inesperado creando el producto ["+e.getMessage()+"]", e);
 		}
 	}
+	
+	@Override
+	public Producto updateProducto(Producto producto) throws ServiceException {
+		try {
+			return this.productoDao.updateProducto(producto);
+		} catch (GenericExeption e) {
+			e.printStackTrace();
+			throw new ServiceException("Error inesperado creando el producto ["+e.getMessage()+"]", e);
+		}
+	}
+
+	@Override
+	public Producto eliminarProducto(String codigoProducto) throws ServiceException {
+		try {
+			return this.productoDao.deleteProducto(codigoProducto);
+		} catch (GenericExeption e) {
+			e.printStackTrace();
+			throw new ServiceException("Error inesperado creando el producto ["+e.getMessage()+"]", e);
+		}
+	}
 }

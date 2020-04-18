@@ -128,4 +128,40 @@ public class ProductoDAOHibernateImpl implements ProductoDAO {
 		return producto;
 	}
 
+	@Override
+	public Producto updateProducto(Producto producto) throws GenericExeption {
+		try {
+			return createProducto(producto);
+		} catch (DuplicateException e) {
+			throw new GenericExeption(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public Producto deleteProducto(String codigoProducto) throws GenericExeption {
+		Producto producto = getProducto(codigoProducto);
+
+		Session session = factory.getCurrentSession();
+
+		try {
+
+			// All the action with DB via Hibernate
+			// must be located in one transaction.
+			// Start Transaction.
+			session.getTransaction().begin();
+			
+			session.remove(producto);
+			
+			// Commit data.
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			throw new GenericExeption(e.getMessage(),e);
+		}finally {
+			session.close();
+		}
+		return producto;
+	}
 }
