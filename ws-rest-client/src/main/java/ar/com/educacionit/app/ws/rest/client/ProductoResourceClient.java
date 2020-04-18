@@ -21,23 +21,17 @@ public class ProductoResourceClient {
 
 	public static void main(String[] args) {
 
-		Client client = ClientBuilder.newClient( new ClientConfig().register( LoggingFeature.class ) );
+		String codigo = "a001";
 		
-		WebTarget webTarget = client.target("http://localhost:8080/app-ws-rest/api/").path("productos/a002");
-		 
-		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
-		 
-		Response response = invocationBuilder.get();
-
-		Producto producto = response.readEntity(Producto.class);
+		Producto producto = getProducto(codigo);
 		
 		System.out.println(producto);
 	}
 
-	public Producto getProducto(Long id) {
+	public static Producto getProducto(String codigo) {
 		Client client = ClientBuilder.newClient( new ClientConfig().register( LoggingFeature.class ) );
 		
-		WebTarget webTarget = client.target("http://localhost:8080/app-rest/api/").path("productos/"+id);
+		WebTarget webTarget = client.target("http://localhost:8080/app-ws-rest/api/").path("productos/"+codigo);
 		 
 		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
 		 
@@ -51,7 +45,7 @@ public class ProductoResourceClient {
 	public List<Producto> getProductos() {
 		Client client = ClientBuilder.newClient( new ClientConfig().register( LoggingFeature.class ) );
 		
-		WebTarget webTarget = client.target("http://localhost:8080/app-rest/api/").path("productos");
+		WebTarget webTarget = client.target("http://localhost:8080/app-ws-rest/api/").path("productos");
 		 
 		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
 		 
