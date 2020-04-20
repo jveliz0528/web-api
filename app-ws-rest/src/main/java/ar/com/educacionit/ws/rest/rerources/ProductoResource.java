@@ -2,6 +2,7 @@ package ar.com.educacionit.ws.rest.rerources;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,87 +26,89 @@ public class ProductoResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findAllProductos() {
-		
+
 		ProductoService productoService = new ProductoServiceImpl();
-		
+
 		try {
 			List<Producto> productos = productoService.findProductos();
 			return Response.ok(productos).build();
 		} catch (ServiceException e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Servicio que retorna un producto dado su codigo
+	 * 
 	 * @param codigoProducto
 	 * @return
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{codigoProducto}")
-	public Response getProductoByNombre(
-			@PathParam("codigoProducto") String codigoProducto)  throws Exception{
+	public Response getProductoByNombre(@PathParam("codigoProducto") String codigoProducto) throws Exception {
 
 		ProductoService productoService = new ProductoServiceImpl();
 
 		try {
-			//logica de negocio
+			// logica de negocio
 			Producto producto = productoService.getProducto(codigoProducto);
-			
-			if(producto != null) {
-				//jax-res -> json
+
+			if (producto != null) {
+				// jax-res -> json
 				return Response.ok(producto).build();
-			}else {
+			} else {
 				return Response.status(Status.FORBIDDEN).build();
 			}
 		} catch (ServiceException e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
 	}
-	
+
+	@RolesAllowed("ADMIN")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createProducto(Producto producto) {
-		
+
 		ProductoService productoService = new ProductoServiceImpl();
-		
+
 		try {
 			productoService.createProducto(producto);
-			
+
 			return Response.status(Status.CREATED).entity(producto).build();
-			
+
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			return Response.status(Status.BAD_REQUEST).entity(producto).build();
 		}
 	}
-	
+
+	@RolesAllowed("ADMIN")
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProducto(Producto producto) {
 		ProductoService productoService = new ProductoServiceImpl();
-		
+
 		try {
 			productoService.updateProducto(producto);
-			
+
 			return Response.ok().entity(producto).build();
-			
+
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
 	}
-	
+
+	@RolesAllowed("ADMIN")
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{codigoProducto}")
-	public Response deleteProducto(
-			@PathParam(value = "codigoProducto") String codigoProducto) {
-		
+	public Response deleteProducto(@PathParam(value = "codigoProducto") String codigoProducto) {
+
 		ProductoService productoService = new ProductoServiceImpl();
 		Producto productoEliminado;
 		try {
