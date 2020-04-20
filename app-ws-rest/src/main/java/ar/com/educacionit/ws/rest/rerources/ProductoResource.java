@@ -1,4 +1,4 @@
-package ar.com.educacionit.ws.rest.configiracion;
+package ar.com.educacionit.ws.rest.rerources;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ProductoServiceImpl;
 
 @Path("productos")
-public class ProductoWSService {
+public class ProductoResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
