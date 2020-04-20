@@ -2,6 +2,7 @@ package ar.com.educacionit.ws.rest.rerources;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -23,11 +24,12 @@ import ar.com.educacionit.services.impl.ProductoServiceImpl;
 @Path("productos")
 public class ProductoResource {
 
+	private ProductoService productoService = new ProductoServiceImpl();
+	
+	@PermitAll
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findAllProductos() {
-
-		ProductoService productoService = new ProductoServiceImpl();
 
 		try {
 			List<Producto> productos = productoService.findProductos();
@@ -44,12 +46,11 @@ public class ProductoResource {
 	 * @param codigoProducto
 	 * @return
 	 */
+	@PermitAll
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{codigoProducto}")
-	public Response getProductoByNombre(@PathParam("codigoProducto") String codigoProducto) throws Exception {
-
-		ProductoService productoService = new ProductoServiceImpl();
+	public Response getByCodigo(@PathParam("codigoProducto") String codigoProducto) throws Exception {
 
 		try {
 			// logica de negocio
@@ -66,13 +67,11 @@ public class ProductoResource {
 		}
 	}
 
-	@RolesAllowed("ADMIN")
+	@RolesAllowed({"ADMIN","USER"})
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createProducto(Producto producto) {
-
-		ProductoService productoService = new ProductoServiceImpl();
 
 		try {
 			productoService.createProducto(producto);
@@ -81,16 +80,15 @@ public class ProductoResource {
 
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			return Response.status(Status.BAD_REQUEST).entity(producto).build();
+			return Response.status(Status.BAD_REQUEST).build();
 		}
 	}
 
-	@RolesAllowed("ADMIN")
+	@RolesAllowed({"ADMIN","USER"})
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProducto(Producto producto) {
-		ProductoService productoService = new ProductoServiceImpl();
 
 		try {
 			productoService.updateProducto(producto);
@@ -103,13 +101,12 @@ public class ProductoResource {
 		}
 	}
 
-	@RolesAllowed("ADMIN")
+	@RolesAllowed({"ADMIN","USER"})
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{codigoProducto}")
 	public Response deleteProducto(@PathParam(value = "codigoProducto") String codigoProducto) {
 
-		ProductoService productoService = new ProductoServiceImpl();
 		Producto productoEliminado;
 		try {
 			productoEliminado = productoService.eliminarProducto(codigoProducto);

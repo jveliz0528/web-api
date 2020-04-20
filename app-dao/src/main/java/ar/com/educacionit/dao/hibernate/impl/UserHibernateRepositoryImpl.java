@@ -28,13 +28,13 @@ public class UserHibernateRepositoryImpl extends HibernateBaseRepository impleme
 			session.getTransaction().begin();
 
 			// Create an HQL statement, query the object.
-			String sql = "Select user from " + User.class.getName() + " user where user.userName=:userName";
+			String sql = "Select e from " + User.class.getName() + " e where e.username=:username ";
 
 			// Create Query object.
 			Query<User> query = session.createQuery(sql);
 
 			//set parameters
-			query.setParameter("userName", userName);
+			query.setParameter("username", userName);
 
 			// Execute query.
 			Optional<User> employees = query.uniqueResultOptional();

@@ -23,8 +23,10 @@
 	<modules>
 		<module>app-domain</module>
 		<module>app-web</module>
-    <module>app-ws-soap</module>
-    <module>app-dao</module>
-    <module>app-services</module>
-  </modules>
+    	<module>app-dao</module>
+    	<module>app-services</module>
+    	<module>app-ws-soap</module>
+    	<module>app-ws-rest</module>
+   	 	<module>app-ws-rest-client</module>
+	</modules>
 </project>
