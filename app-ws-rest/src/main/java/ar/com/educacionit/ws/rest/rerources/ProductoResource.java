@@ -84,7 +84,7 @@ public class ProductoResource {
 		}
 	}
 
-	@RolesAllowed({"ADMIN","USER"})
+	@RolesAllowed({"ADMIN"})
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

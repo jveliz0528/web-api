@@ -25,8 +25,9 @@
 		<module>app-web</module>
     	<module>app-dao</module>
     	<module>app-services</module>
-    	<module>app-ws-soap</module>
+<!--     	<module>app-ws-soap</module> -->
     	<module>app-ws-rest</module>
-   	 	<module>app-ws-rest-client</module>
+<!--    	 	<module>app-ws-rest-client</module> -->
+		<module>app-ws-meli-client</module>
 	</modules>
 </project>

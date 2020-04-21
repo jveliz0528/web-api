@@ -131,7 +131,50 @@ public class ProductoDAOHibernateImpl implements ProductoDAO {
 	@Override
 	public Producto updateProducto(Producto producto) throws GenericExeption {
 		try {
-			return createProducto(producto);
+			// return createProducto(producto);
+			Session session = factory.getCurrentSession();
+
+			try {
+				// All the action with DB via Hibernate
+				// must be located in one transaction.
+				// Start Transaction.
+				session.getTransaction().begin();
+
+				// Create an HQL statement, query the object.
+				String sql = "Select e from " + Producto.class.getName() + " e where e.codigo=:codigo ";
+
+				// Create Query object.
+				Query<Producto> query = session.createQuery(sql);
+				
+				query.setParameter("codigo", producto.getCodigo());
+
+				// Execute query.
+				Optional<Producto> productoOptional = query.uniqueResultOptional();
+
+				Producto productoBean = null;
+				if(productoOptional.isPresent()) {
+					productoBean = productoOptional.get();
+					productoBean.setDescripcion(producto.getDescripcion());
+					productoBean.setPrecio(producto.getPrecio());
+				}
+
+				session.saveOrUpdate(productoBean);
+				
+				// Commit data.
+				session.getTransaction().commit();
+			}catch (ConstraintViolationException e) {
+				e.printStackTrace();
+				session.getTransaction().rollback();
+				throw new DuplicateException(e.getCause().getMessage(),e);
+			} catch (Exception e) {
+				e.printStackTrace();
+				// Rollback in case of an error occurred.
+				session.getTransaction().rollback();
+				throw new GenericExeption(e.getMessage(),e);
+			}finally {
+				session.close();
+			}
+			return producto;
 		} catch (DuplicateException e) {
 			throw new GenericExeption(e.getMessage(), e);
 		}
