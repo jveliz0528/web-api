@@ -1,5 +1,5 @@
 
-package ar.com.eduacionit.app.ws.meli.client.dto;
+package ar.com.eduacionit.app.ws.meli.client.dto.site;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

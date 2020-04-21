@@ -4,7 +4,7 @@ import java.util.List;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
-import ar.com.eduacionit.app.ws.meli.client.dto.Site;
+import ar.com.eduacionit.app.ws.meli.client.dto.site.Site;
 
 public class SiteRestExecutor extends RestRequestExecutor<List<Site>> {
 

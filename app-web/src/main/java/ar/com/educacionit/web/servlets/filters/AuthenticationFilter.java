@@ -42,6 +42,7 @@ public class AuthenticationFilter implements Filter {
 		HttpSession session = req.getSession(false);
 
 		final List<String> excludedPath = Arrays.asList(
+				contextPath+ "/meli/categorias",
 				contextPath+"/login.jsp", 
 				contextPath+"/notLogged.jsp", 
 				contextPath+"/login", 

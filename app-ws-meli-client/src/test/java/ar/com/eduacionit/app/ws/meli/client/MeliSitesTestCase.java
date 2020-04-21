@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import ar.com.eduacionit.app.ws.meli.client.dto.Site;
+import ar.com.eduacionit.app.ws.meli.client.dto.site.Site;
 
 public class MeliSitesTestCase {
 

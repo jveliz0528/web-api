@@ -18,6 +18,10 @@
 			    <input name="password" type="password" class="form-control" id="password">
 			  </div>
 			  <button type="submit" class="btn btn-primary">Login</button>
+			  <a href="<%=request.getContextPath()%>"
+						class="btn btn-primary btn-md">
+						<span class="glyphicon glyphicon-home"></span> Take Me Home 
+					</a>
 			</form>
 		</div>
 	</body>

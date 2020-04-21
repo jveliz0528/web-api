@@ -13,6 +13,7 @@
 			  <hr class="my-4">
 			  <p>Servlet + JSP</p>
 			  <a class="btn btn-primary btn-lg" href="<%=request.getContextPath()%>/login.jsp" role="button">Ir A Login</a>
+			  <a class="btn btn-primary btn-lg" href="<%=request.getContextPath()%>/meli/categorias" role="button">Meli Categorias</a>
 			</div>
 		</div>
 	</body>
