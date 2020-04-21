@@ -46,4 +46,9 @@ public class Site {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Site [defaultCurrencyId=" + defaultCurrencyId + ", id=" + id + ", name=" + name + "]";
+	}
+
 }

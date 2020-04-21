@@ -1,45 +1,70 @@
 package ar.com.eduacionit.app.ws.meli.client;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
+import javax.ws.rs.core.Response.Status;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.logging.LoggingFeature;
 
-import ar.com.eduacionit.app.ws.meli.client.dto.Site;
-
 public abstract class RestRequestExecutor<T> {
 
-	public T get(String endPoint, Map<String, String> params ) {
+	protected String urlRestApi;
+	
+	public RestRequestExecutor(String urlRestApi) {
+		this.urlRestApi = urlRestApi;
+	}
+
+	public T executeRestCall() throws Exception {
 		
 		Client client = ClientBuilder.newClient( new ClientConfig().register( LoggingFeature.class ) );
 		
-		WebTarget webTarget = client.target(endPoint).path("site");
+		WebTarget webTarget = this.buildWebTarget(client);
 		 
 		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
 		 
-		Response response = invocationBuilder.get();
+		Response response = this.buildResponse(invocationBuilder);
 
-		GenericType<List<Site>> entity = new GenericType<List<Site>>(){		
-		};
-		List<Site> productos = response.readEntity(entity);
-		//logica de consulta al sistema externo
+		if(Status.OK.getStatusCode() != response.getStatus()) {
+			throw new Exception(response.getStatusInfo().getReasonPhrase());
+		}
 		
+		T responseDto = this.buildResponseDto(response);
 		
-		//conersion de la respuesta al tipo de datos que necesita
-		
-		
-		//return 
-		
-		return null;
-		//return entity;
+		return responseDto;
+	}
+
+	protected abstract T buildResponseDto(Response response);
+
+	/**
+	 * Por defecto se ejecuta GET
+	 * @param invocationBuilder
+	 * @return
+	 */
+	private Response buildResponse(Builder invocationBuilder) {
+		return invocationBuilder.get();
+	}
+
+	/**
+	 * Arma la url del servicio rest que será consumido.
+	 * Ej: http://www.pagina.com.ar/recurso
+	 * @param client
+	 * @param requestDto
+	 * @return
+	 */
+	protected WebTarget buildWebTarget(Client client) {
+		return client.target(getUrlRestApi());
+	}
+
+	public String getUrlRestApi() {
+		return urlRestApi;
+	}
+
+	public void setUrlRestApi(String urlRestApi) {
+		this.urlRestApi = urlRestApi;
 	}
 }
