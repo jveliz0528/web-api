@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>login-page.xhtml</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		crossorigin="anonymous" />
+</h:head>
+
+<h:body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h:form>
+					<h:outputText value="#{loginBean.error}" />
+					<table>
+						<tr>
+							<td><h:outputLabel value="User Name" /></td>
+							<td><h:inputText value="#{loginBean.user}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputLabel value="Password" /></td>
+							<td><h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+							</td>
+						</tr>
+						<tr>
+							<td><h:commandButton action="${loginBean.login}"
+									value="Login"></h:commandButton></td>
+						</tr>
+					</table>
+				</h:form>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
