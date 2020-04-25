@@ -6,6 +6,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import ar.com.eduacionit.app.domain.User;
+import ar.com.educacionit.services.UserService;
+import ar.com.educacionit.services.exceptions.ServiceException;
+import ar.com.educacionit.services.impl.UserServiceImpl;
+
 @ManagedBean()
 @RequestScoped
 public class LoginBean {
@@ -16,7 +21,33 @@ public class LoginBean {
 	
 	private String error;
 
+	private UserService userService = new UserServiceImpl();
+	
 	public String login() {
+		
+		User user;
+		try {
+			user = userService.getUserByUserName("ADMIN");
+			
+			if(user !=null && user.getPassword().equals(password)) {
+				Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+				sessionMap.put("usuario", user);
+				return "login-success";
+			    
+			}else {
+				error = "Bad User/password";
+				return "login";
+			}
+		} catch (ServiceException e) {
+			error = e.getMessage();
+			return "login";
+		}
+	}
+		
+	public String login2() {
+		
+		
+		
 		if (user.equalsIgnoreCase("eduit") && password.equals("eduit")) {
 			Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 			sessionMap.put("usuario", "EDUIT");
@@ -26,6 +57,11 @@ public class LoginBean {
 			error = "Bad User/password";
 			return "login";
 		}
+	}
+
+	
+	public String home() {
+		return "home";
 	}
 	
 	public String getPassword() {

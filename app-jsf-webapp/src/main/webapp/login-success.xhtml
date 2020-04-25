@@ -7,10 +7,13 @@
      </h:head>
  
      <h:body>
- 
-		<h:form rendered="#{usuarioBean.logueado()}">
+ 		
+ 		<!--rendered="#{usuarioBean.logueado()}"-->		
+		<h:form>
         	<h:messages id="msgs"/>
         	<h:outputLabel > </h:outputLabel>
+			<h:outputLabel value="#{usuario.username}"></h:outputLabel>
+			<h:outputLabel value="#{usuario.roles}"></h:outputLabel>			
         	<h:commandButton action="login" value="Volver"></h:commandButton>
 		</h:form>
  
