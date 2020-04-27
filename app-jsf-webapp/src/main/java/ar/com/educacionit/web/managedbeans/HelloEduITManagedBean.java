@@ -1,8 +1,8 @@
 package ar.com.educacionit.web.managedbeans;
 
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
-@ManagedBean(name = "helloEduITManagedBean", eager = true)
+@Named
 public class HelloEduITManagedBean {
 
 	public HelloEduITManagedBean() {

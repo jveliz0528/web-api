@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+<h:head>
+	<title>LOGIN-SUCCESS.XHTML</title>
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous" />
+</h:head>
+
+<h:body>
+	
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-12">
+<h:form>
+		<h:commandButton action="#{usuarioBean.logout()}" value="Cerrar Sesion"></h:commandButton>
+	</h:form>
+	
+	<h:form>
+
+		<!--  LISTA DE LOS ROLES ASIGNADOS AL USUARIO LOGUEADO -->
+		<h:dataTable 
+			styleClass="table" 
+			value="#{productoBean.productos}" 
+			var="producto"
+			rendered="#{productoBean.productos != null}">
+			<h:column>
+				<f:facet name="header">Id:</f:facet>
+				#{producto.id}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Codigo:</f:facet>
+				#{producto.codigo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Descripcion:</f:facet>
+				#{producto.descripcion}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Precio:</f:facet>
+				#{producto.precio}
+			</h:column>
+			<h:column>
+				<h:commandButton action="#{productoBean.nuevoProducto()}" value="Nuevo Producto" class="btn btn-success"></h:commandButton>
+				<h:commandButton action="#{productoBean.editarProducto(producto.codigo)}" value="Modificar Producto" class="btn btn-success"></h:commandButton>							
+			</h:column>
+		</h:dataTable>
+		
+		<h:panelGrid columns="2">
+			<h:outputLabel value=""></h:outputLabel>
+			<h:commandButton action="login-success" value="volver"/>
+		</h:panelGrid>
+	</h:form>			
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

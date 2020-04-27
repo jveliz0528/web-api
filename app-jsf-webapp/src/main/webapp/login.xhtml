@@ -13,21 +13,32 @@
 <h:body>
 	<div class="container">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-6 offset-4">
 				<h:form>
-					<h:outputText value="#{loginBean.error}" />
-					<table>
+					<h:panelGrid columns="2" styleClass="table" rendered="#{loginBean.error != null}">
+						<h:outputText value="#{loginBean.error}" styleClass="alert alert-danger" />
+					</h:panelGrid>
+					<table class="table">
 						<tr>
 							<td><h:outputLabel value="User Name" /></td>
-							<td><h:inputText value="#{loginBean.user}" /></td>
-						</tr>
-						<tr>
-							<td><h:outputLabel value="Password" /></td>
-							<td><h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+							<td>
+								<h:inputText id="username" value="#{loginBean.user}" label="username">
+								<f:validateLength maximum="10" minimum="3"/>
+							</h:inputText>
+							<h:message for = "username" style="color:red"/>
 							</td>
 						</tr>
 						<tr>
-							<td><h:commandButton action="${loginBean.login}"
+							<td><h:outputLabel value="Password" /></td>
+							<td>
+								<h:inputSecret value="#{loginBean.password}" id="password" label="password">
+									<f:validateLength maximum="10" minimum="3"/>
+								</h:inputSecret>
+								<h:message for = "password" style="color:red"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><h:commandButton action="${loginBean.login}"
 									value="Login"></h:commandButton></td>
 						</tr>
 					</table>

@@ -1,23 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
-
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
- 	<title>LOGIN-SUCCESS.XHTML</title>
-     </h:head>
- 
-     <h:body>
+	<title>LOGIN-SUCCESS.XHTML</title>
+</h:head>
 
-		<h:form>
-		   <h3>Implicta</h3>
-		   <h:commandButton action ="home" value = "Home" />
-		   
-	      <h:commandButton action = "#{loginBean.home}" value="Home" />
-		   
-		</h:form>
-		<h:form>
-		   <h3>Login</h3>
-		   <h:commandButton action ="login" value = "Ir A Login" />
-		</h:form>
-	</h:body>
+<h:body>
+
+	<h:form>
+		<h3>Implicta</h3>
+		<h:commandButton action="home" value="Home" />
+
+		<h:commandButton action="#{loginBean.home}" value="Home" />
+
+	</h:form>
+	<h:form>
+		<h3>Login</h3>
+		<h:commandButton action="login" value="Ir A Login" />
+	</h:form>
+</h:body>
 </html>

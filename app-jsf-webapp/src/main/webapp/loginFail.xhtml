@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+	<h:head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+	</h:head>
+	<h:body>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="alert alert-danger" role="alert">
+						Usuario / Password Inválidos
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">	
+					<h:form>
+						<h:commandButton action="${loginBean.login}" value="Login"></h:commandButton>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</h:body>
+</html>

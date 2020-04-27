@@ -1,20 +1,27 @@
 package ar.com.educacionit.web.managedbeans;
 
+import java.io.Serializable;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import ar.com.eduacionit.app.domain.User;
 import ar.com.educacionit.services.UserService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.UserServiceImpl;
 
-@ManagedBean()
+@Named
 @RequestScoped
-public class LoginBean {
+public class LoginBean implements Serializable{
 
+	private static final long serialVersionUID = 1909648574315208370L;
+
+	@Inject
+	private UsuarioBean usuarioBean;
+	
 	private String user;
 	
 	private String password;
@@ -30,8 +37,7 @@ public class LoginBean {
 			user = userService.getUserByUserName("ADMIN");
 			
 			if(user !=null && user.getPassword().equals(password)) {
-				Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-				sessionMap.put("usuario", user);
+				usuarioBean.setUsuario(user);
 				return "login-success";
 			    
 			}else {
@@ -87,6 +93,14 @@ public class LoginBean {
 
 	public void setError(String error) {
 		this.error = error;
+	}
+
+	public UsuarioBean getUsuarioBean() {
+		return usuarioBean;
+	}
+
+	public void setUsuarioBean(UsuarioBean usuarioBean) {
+		this.usuarioBean = usuarioBean;
 	}
 	
 }

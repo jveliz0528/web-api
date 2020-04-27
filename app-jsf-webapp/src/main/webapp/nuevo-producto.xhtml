@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>User Registration Form</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		crossorigin="anonymous" />
+	<!-- 	<h:outputStylesheet name="/css/bootstrap.min.css" /> -->
+</h:head>
+<h:body>
+	<div class="container">
+		<div class="row">
+			<div class="col-6 offset-3">
+				<h1>Alta de producto</h1>
+				<h:form>
+					<div class="form-group">
+						<h:outputLabel for="codigo" class="control-label col-sm-4">Codigo</h:outputLabel>
+						<h:inputText id="codigo" value="#{productoBean.producto.codigo}"
+							class="form-control" 
+							required="true">
+							<f:validateRequired for="codigo"/>
+							<f:validateLength minimum="3" maximum="10" for="codigo"/>
+						</h:inputText>
+						<h:message for="codigo"></h:message>
+					</div>
+					<div class="form-group">
+						<h:outputLabel for="descripcion" class="control-label col-sm-4">Descripcion</h:outputLabel>
+						<h:inputText id="descripcion"
+							value="#{productoBean.producto.descripcion}"
+							class="form-control"
+							validatorMessage="Descripcion es requerida"
+							required="true">
+							<f:validateRequired for="descripcion"/>
+						</h:inputText>
+						<h:message for="descripcion"/>
+					</div>
+					<div class="form-group">
+						<h:outputLabel for="precio" class="control-label col-sm-4">Precio</h:outputLabel>
+						<h:inputText id="precio"
+							value="#{productoBean.producto.precio}" class="form-control"
+							required="true"
+							validatorMessage="precio is required">
+							 <f:convertNumber integerOnly="false" type="number" for="precio"/>
+						</h:inputText>
+						<h:message for="precio"></h:message>
+					</div>
+					<h:commandButton value="Grabar" action="#{productoBean.crearNuevoProducto()}" class="btn btn-success"/>
+					<h:link outcome="login-success" value="Listado Productos" class="btn btn-primary ml-5" />
+				</h:form>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
