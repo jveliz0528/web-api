@@ -34,7 +34,7 @@ public class LoginBean implements Serializable{
 		
 		User user;
 		try {
-			user = userService.getUserByUserName("ADMIN");
+			user = userService.getUserByUserName(this.user);
 			
 			if(user !=null && user.getPassword().equals(password)) {
 				usuarioBean.setUsuario(user);

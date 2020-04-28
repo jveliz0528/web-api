@@ -22,10 +22,9 @@
 						<h:inputText id="codigo" value="#{productoBean.producto.codigo}"
 							class="form-control" 
 							required="true">
-							<f:validateRequired for="codigo"/>
-							<f:validateLength minimum="3" maximum="10" for="codigo"/>
+								<f:validateLength minimum="3" maximum="10" for="codigo"/>
 						</h:inputText>
-						<h:message for="codigo"></h:message>
+						<h:message for="codigo" style="color:red;"></h:message>
 					</div>
 					<div class="form-group">
 						<h:outputLabel for="descripcion" class="control-label col-sm-4">Descripcion</h:outputLabel>
@@ -44,13 +43,14 @@
 							value="#{productoBean.producto.precio}" class="form-control"
 							required="true"
 							validatorMessage="precio is required">
-							 <f:convertNumber integerOnly="false" type="number" for="precio"/>
+							 <f:convertNumber integerOnly="true" type="number" for="precio"/>
 						</h:inputText>
 						<h:message for="precio"></h:message>
 					</div>
 					<h:commandButton value="Grabar" action="#{productoBean.crearNuevoProducto()}" class="btn btn-success"/>
-					<h:link outcome="login-success" value="Listado Productos" class="btn btn-primary ml-5" />
 				</h:form>
+				
+				
 			</div>
 		</div>
 	</div>
