@@ -15,21 +15,23 @@
 				<h1>Editar producto id: #{productoBean.producto.id}</h1>
 				<h:form>
 					<div class="form-group">
-						<h:outputLabel for="codigo" class="control-label col-sm-4">Codigo</h:outputLabel>
-						<h:outputLabel value="#{productoBean.producto.codigo}" styleClass="form-control"/>
-						<h:inputHidden id="codigo" value="#{productoBean.producto.codigo}"/>
-						<h:message for="codigo"></h:message>
+						<h:outputLabel class="control-label col-sm-4">Codigo</h:outputLabel>
+						<h:inputText id="codigoHidden"
+							value="#{productoBean.producto.codigo}"
+							class="form-control"
+							readonly="#{facesContext.renderResponse}">
+						</h:inputText>
 					</div>
 					<div class="form-group">
 						<h:outputLabel for="descripcion" class="control-label col-sm-4">Descripcion</h:outputLabel>
 						<h:inputText id="descripcion"
 							value="#{productoBean.producto.descripcion}"
 							class="form-control"
-							validatorMessage="Descripcion es requerida"
-							required="true">
+							required="true"
+							label="Descripcion">
 							<f:validateRequired for="descripcion"/>
 						</h:inputText>
-						<h:message for="descripcion"/>
+						<h:message for="descripcion" style="color:red;"/>
 					</div>
 					<div class="form-group">
 						<h:outputLabel for="precio" class="control-label col-sm-4">Precio</h:outputLabel>
@@ -37,10 +39,11 @@
 							value="#{productoBean.producto.precio}" 
 							id="precio"
 							class="form-control"
-							required="true">
+							required="true"
+							label="Precio">
 							 <f:convertNumber integerOnly="false" type="number" for="precio"/>
 						</h:inputText>
-						<h:message for="precio"></h:message>
+						<h:message for="precio" style="color:red;"/>
 					</div>
 					<h:commandButton value="Grabar" action="#{productoBean.updateProducto()}" class="btn btn-success"/>
 					<h:link outcome="listado-productos.xhtml?faces-redirect=true" value="Volver" styleClass="btn btn-primary ml-2"/>
