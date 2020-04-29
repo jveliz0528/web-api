@@ -5,26 +5,19 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<title>User Registration Form</title>
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-		crossorigin="anonymous" />
-	<!-- 	<h:outputStylesheet name="/css/bootstrap.min.css" /> -->
+	<h:outputScript library="javax.faces" name="jsf.js" target="body" />
+	<h:outputStylesheet library="webjars" name="/bootstrap/4.3.1/css/bootstrap.min-jsf.css" />
 </h:head>
 <h:body>
 	<div class="container">
 		<div class="row">
 			<div class="col-6 offset-3">
-				<h1>Alta de producto</h1>
+				<h1>Editar producto id: #{productoBean.producto.id}</h1>
 				<h:form>
 					<div class="form-group">
 						<h:outputLabel for="codigo" class="control-label col-sm-4">Codigo</h:outputLabel>
-						<h:inputText id="codigo" value="#{productoBean.producto.codigo}"
-							class="form-control" 
-							required="true">
-							<f:validateRequired for="codigo"/>
-							<f:validateLength minimum="3" maximum="10" for="codigo"/>
-						</h:inputText>
+						<h:outputLabel value="#{productoBean.producto.codigo}" styleClass="form-control"/>
+						<h:inputHidden id="codigo" value="#{productoBean.producto.codigo}"/>
 						<h:message for="codigo"></h:message>
 					</div>
 					<div class="form-group">
@@ -40,16 +33,17 @@
 					</div>
 					<div class="form-group">
 						<h:outputLabel for="precio" class="control-label col-sm-4">Precio</h:outputLabel>
-						<h:inputText id="precio"
-							value="#{productoBean.producto.precio}" class="form-control"
-							required="true"
-							validatorMessage="precio is required">
+						<h:inputText 
+							value="#{productoBean.producto.precio}" 
+							id="precio"
+							class="form-control"
+							required="true">
 							 <f:convertNumber integerOnly="false" type="number" for="precio"/>
 						</h:inputText>
 						<h:message for="precio"></h:message>
 					</div>
-					<h:commandButton value="Grabar" action="#{productoBean.actualizarProducto()}" class="btn btn-success"/>
-					<h:link outcome="login-success" value="Listado Productos" class="btn bt30-primary ml-5" />
+					<h:commandButton value="Grabar" action="#{productoBean.updateProducto()}" class="btn btn-success"/>
+					<h:link outcome="listado-productos.xhtml?faces-redirect=true" value="Volver" styleClass="btn btn-primary ml-2"/>
 				</h:form>
 			</div>
 		</div>

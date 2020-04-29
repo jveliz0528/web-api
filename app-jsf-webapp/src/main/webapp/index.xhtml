@@ -4,22 +4,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-	<title>LOGIN-SUCCESS.XHTML</title>
-</h:head>
-
-<h:body>
-
-	<h:form>
-		<h3>Implicta</h3>
-		<h:commandButton action="home" value="Home" />
-
-		<h:commandButton action="#{loginBean.home}" value="Home" />
-
-	</h:form>
-	<h:form>
-		<h3>Login</h3>
-		<h:commandButton action="login" value="Ir A Login" />
-	</h:form>
-</h:body>
+	<h:head>
+		<title>LOGIN-SUCCESS.XHTML</title>
+		<h:outputScript library="javax.faces" name="jsf.js" target="body" />
+		<h:outputStylesheet library="webjars" name="/bootstrap/4.3.1/css/bootstrap.min-jsf.css" />
+	</h:head>
+	<h:body>
+		<div class="container">
+			<div class="jumbotron">
+			  <h1 class="display-4">Bienvenido!</h1>
+			  <p class="lead">EudacionIt - Curso Java Web Api</p>
+			  <hr class="my-4"/>
+			  <p>JSF + CDI</p>
+			  <h:link styleClass="btn btn-primary btn-lg" outcome="login.xhtml?faces-redirect=true" value="Ir A Login" />
+			</div>
+		</div>
+	</h:body>
 </html>

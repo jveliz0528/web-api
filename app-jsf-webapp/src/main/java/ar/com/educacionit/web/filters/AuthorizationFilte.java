@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ar.com.eduacionit.app.domain.User;
-import ar.com.educacionit.web.managedbeans.UsuarioBean;
+import ar.com.educacionit.web.managedbeans.usuario.UsuarioBean;
 
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })
 public class AuthorizationFilte implements Filter {
@@ -48,6 +48,8 @@ public class AuthorizationFilte implements Filter {
 
 		HttpSession session = req.getSession(false);
 
+		final List<String> resources = Arrays.asList("javax.faces.resource");
+		
 		final List<String> excludedPath = Arrays.asList(
 				contextPath+ "/index.xhtml",
 				contextPath+"/login.xhtml", 
@@ -60,8 +62,12 @@ public class AuthorizationFilte implements Filter {
 		boolean isExcluded = excludedPath.stream()
 				// .peek(x ->System.out.println(x))
 				.filter(x -> uri.equals(x)).count() > 0;
-		
-		if(isExcluded) {
+
+		boolean isResources = resources.stream()
+				// .peek(x ->System.out.println(x))
+				.filter(x -> uri.contains(x)).count() > 0;
+
+		if(isExcluded || isResources) {
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
 		}else {

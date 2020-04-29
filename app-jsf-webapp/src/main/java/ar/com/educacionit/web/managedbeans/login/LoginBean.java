@@ -1,10 +1,8 @@
-package ar.com.educacionit.web.managedbeans;
+package ar.com.educacionit.web.managedbeans.login;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,6 +10,7 @@ import ar.com.eduacionit.app.domain.User;
 import ar.com.educacionit.services.UserService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.UserServiceImpl;
+import ar.com.educacionit.web.managedbeans.usuario.UsuarioBean;
 
 @Named
 @RequestScoped
@@ -41,30 +40,13 @@ public class LoginBean implements Serializable{
 				return "login-success";
 			    
 			}else {
-				error = "Bad User/password";
-				return "login";
+				return "login-fail";
 			}
 		} catch (ServiceException e) {
 			error = e.getMessage();
 			return "login";
 		}
 	}
-		
-	public String login2() {
-		
-		
-		
-		if (user.equalsIgnoreCase("eduit") && password.equals("eduit")) {
-			Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-			sessionMap.put("usuario", "EDUIT");
-			sessionMap.put("nick", "eduitnick");
-			return "login-success";
-		} else {
-			error = "Bad User/password";
-			return "login";
-		}
-	}
-
 	
 	public String home() {
 		return "home";

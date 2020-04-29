@@ -1,50 +1,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-
-<h:head>
-	<title>login-page.xhtml</title>
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-		crossorigin="anonymous" />
-</h:head>
-
-<h:body>
-	<div class="container">
-		<div class="row">
-			<div class="col-6 offset-4">
-				<h:form>
-					<h:panelGrid columns="2" styleClass="table" rendered="#{loginBean.error != null}">
-						<h:outputText value="#{loginBean.error}" styleClass="alert alert-danger" />
-					</h:panelGrid>
-					<table class="table">
-						<tr>
-							<td><h:outputLabel value="User Name" /></td>
-							<td>
-								<h:inputText id="username" value="#{loginBean.user}" label="username">
+	<h:head>
+		<title>login-page.xhtml</title>
+		<h:outputScript library="javax.faces" name="jsf.js" target="body" />
+		<h:outputStylesheet library="webjars" name="/bootstrap/4.3.1/css/bootstrap.min-jsf.css" />
+	</h:head>
+	<h:body>
+		<div class="container">
+			<div class="row">
+				<div class="col-6 offset-3 mt-2">
+					<h1>Login</h1>
+					<h:outputText value="#{loginBean.error}" style="color:red" />
+					<h:form styleClass="mt-2">
+					  <div class="form-group">
+					    <h:outputLabel value="User Name" />
+					    <h:inputText 
+					    	value="#{loginBean.user}" 
+					    	id="username" 
+					    	styleClass="form-control" 
+					    	label="username"
+					    	required="true">
 								<f:validateLength maximum="10" minimum="3"/>
-							</h:inputText>
-							<h:message for = "username" style="color:red"/>
-							</td>
-						</tr>
-						<tr>
-							<td><h:outputLabel value="Password" /></td>
-							<td>
-								<h:inputSecret value="#{loginBean.password}" id="password" label="password">
-									<f:validateLength maximum="10" minimum="3"/>
-								</h:inputSecret>
-								<h:message for = "password" style="color:red"/>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2"><h:commandButton action="${loginBean.login}"
-									value="Login"></h:commandButton></td>
-						</tr>
-					</table>
-				</h:form>
+						</h:inputText>
+						<h:message for = "username" style="color:red"/>
+					  </div>
+					  <div class="form-group">
+					    <h:outputLabel for="password" value="Password" />
+					    <h:inputSecret 
+					    	value="#{loginBean.password}" 
+					    	id="password"
+					    	styleClass="form-control" 
+					    	label="password"
+					    	required="true">
+								<f:validateLength maximum="10" minimum="3"/>
+							</h:inputSecret>
+							<h:message for = "password" style="color:red"/>
+					  </div>
+					  <h:commandButton styleClass="btn btn-primary" action="${loginBean.login}" value="Login"></h:commandButton>
+					</h:form>
+				</div>
 			</div>
 		</div>
-	</div>
-</h:body>
+	</h:body>
 </html>

@@ -1,7 +1,6 @@
-package ar.com.educacionit.web.managedbeans;
+package ar.com.educacionit.web.managedbeans.usuario;
 
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,8 +20,6 @@ public class UsuarioBean implements Serializable {
 	private String[] roles;
 	
 	public boolean logueado( ) {
-		/*Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		return sessionMap.get("usuario") != null;*/
 		return this.usuario != null;
 	}
 	
@@ -31,7 +28,7 @@ public class UsuarioBean implements Serializable {
 		setRoles(new String[]{});
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		
-		return "login";
+		return "login?faces-redirect=true";
 	}
 
 	public User getUsuario() {

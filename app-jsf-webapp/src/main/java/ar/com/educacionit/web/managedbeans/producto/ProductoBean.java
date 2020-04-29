@@ -20,19 +20,20 @@ public class ProductoBean implements Serializable{
 
 	private ProductoService productoService = new ProductoServiceImpl();
 	
-	private List<Producto> productos;
-	
 	private Producto producto = new Producto();
 	
-	public String consultarTodos() {
+	private String mensajeError;
+	
+	public List<Producto> findProductos() {
+		List<Producto> productos;
 		try {
-			this.productos = productoService.findProductos();
+			productos = productoService.findProductos();
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			this.productos = new ArrayList<Producto>();
+			mensajeError = e.getMessage();
+			productos = new ArrayList<Producto>();
 		}
-		
-		return "listado-productos";
+		return productos;
 	}
 
 	public String nuevoProducto() {
@@ -43,6 +44,7 @@ public class ProductoBean implements Serializable{
 		try {
 			this.productoService.createProducto(this.producto);
 		} catch (ServiceException e) {
+			this.mensajeError = e.getMessage();
 			return "nuevo-producto";
 		}
 		return "listado-productos";
@@ -57,12 +59,26 @@ public class ProductoBean implements Serializable{
 		return "editar-producto";
 	}
 	
-	public List<Producto> getProductos() {
-		return productos;
+	public String eliminarProducto(String codigo) {
+		try {
+			this.producto =  this.productoService.eliminarProducto(codigo);
+		} catch (ServiceException e) {
+			return "nuevo-producto";
+		}
+		return "listado-productos";
 	}
-
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
+	
+	public String updateProducto() {
+		
+		try {
+			this.productoService.updateProducto(this.producto);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			return "editar-producto"; 
+		}
+		
+		return "listado-productos";
+		
 	}
 
 	public Producto getProducto() {
@@ -72,4 +88,13 @@ public class ProductoBean implements Serializable{
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
+
+	public String getMensajeError() {
+		return mensajeError;
+	}
+
+	public void setMensajeError(String mensajeError) {
+		this.mensajeError = mensajeError;
+	}
+	
 }
