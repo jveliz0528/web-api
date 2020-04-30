@@ -54,9 +54,7 @@ public class AuthorizationFilte implements Filter {
 				contextPath+ "/index.xhtml",
 				contextPath+"/login.xhtml", 
 				contextPath+"/notLogged.xhtml", 
-				contextPath+"/login", 
-				contextPath+"/logout", 
-				req.getContextPath() + "/"
+				req.getContextPath() + "/" 
 		);
 
 		boolean isExcluded = excludedPath.stream()
@@ -77,7 +75,6 @@ public class AuthorizationFilte implements Filter {
 				res.sendRedirect(req.getContextPath()+"/notLogged.xhtml");
 			} else {
 				
-				// User loggedUser = (User)session.getAttribute("usuario");
 				User loggedUser = this.usuarioBean.getUsuario();
 				
 				if(loggedUser != null) {

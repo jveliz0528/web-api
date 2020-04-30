@@ -34,6 +34,7 @@
 								#{producto.descripcion}
 							</h:column>
 							<h:column>
+								<f:facet name="header">Precio</f:facet>
 								<h:outputText value="#{producto.precio}">
 					                <f:convertNumber pattern="$ ##,###.00"/>
 					            </h:outputText>

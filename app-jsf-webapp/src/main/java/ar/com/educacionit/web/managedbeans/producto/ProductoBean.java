@@ -65,7 +65,7 @@ public class ProductoBean implements Serializable{
 		} catch (ServiceException e) {
 			return "nuevo-producto";
 		}
-		return "listado-productos";
+		return "listado-productos?faces-redirect=true";
 	}
 	
 	public String updateProducto() {
@@ -77,7 +77,7 @@ public class ProductoBean implements Serializable{
 			return "editar-producto"; 
 		}
 		
-		return "listado-productos";
+		return "listado-productos?feces-redirect=true";
 		
 	}
 
