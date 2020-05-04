@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.eduacionit.app.domain.Producto;
+import ar.com.eduacionit.app.domain.TipoProducto;
 import ar.com.educacionit.dao.AdministradorDeConexiones;
 import ar.com.educacionit.dao.ProductoDAO;
 import ar.com.educacionit.dao.exceptions.DuplicateException;
@@ -164,6 +165,12 @@ public class ProductoDAOJDBCImpl implements ProductoDAO {
 
 	@Override
 	public Producto deleteProducto(String codigoProducto) throws GenericExeption {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TipoProducto> findTipoProductos() throws GenericExeption {
 		// TODO Auto-generated method stub
 		return null;
 	}

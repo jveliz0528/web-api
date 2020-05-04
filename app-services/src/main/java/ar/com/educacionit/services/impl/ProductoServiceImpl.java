@@ -3,6 +3,7 @@ package ar.com.educacionit.services.impl;
 import java.util.List;
 
 import ar.com.eduacionit.app.domain.Producto;
+import ar.com.eduacionit.app.domain.TipoProducto;
 import ar.com.educacionit.dao.ProductoDAO;
 import ar.com.educacionit.dao.exceptions.DuplicateException;
 import ar.com.educacionit.dao.exceptions.GenericExeption;
@@ -69,6 +70,16 @@ public class ProductoServiceImpl implements ProductoService {
 		} catch (GenericExeption e) {
 			e.printStackTrace();
 			throw new ServiceException("Error inesperado creando el producto ["+e.getMessage()+"]", e);
+		}
+	}
+
+	@Override
+	public List<TipoProducto> findTipoProductos() throws ServiceException {
+		try {
+			return this.productoDao.findTipoProductos();
+		} catch (GenericExeption e) {
+			e.printStackTrace();
+			throw new ServiceException("Error inesperado consultando tipo de productos["+e.getMessage()+"]", e);
 		}
 	}
 }

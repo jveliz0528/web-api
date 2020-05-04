@@ -1,9 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	>
 	<h:head>
 		<title>login-page.xhtml</title>
-		<h:outputScript library="javax.faces" name="jsf.js" target="body" />
+<!-- 		<h:outputScript library="javax.faces" name="jsf.js" target="body" /> -->
 		<h:outputStylesheet library="webjars" name="/bootstrap/4.3.1/css/bootstrap.min-jsf.css" />
 	</h:head>
 	<h:body>
@@ -11,33 +13,34 @@
 			<div class="row">
 				<div class="col-6 offset-3 mt-2">
 					<h1>Login</h1>
-					<h:outputText value="#{loginBean.error}" style="color:red" />
+					<!-- mensajeria -->
+					<p:growl id="error" life="2500"/>
 					<h:form styleClass="mt-2">
 					  <div class="form-group">
-					    <h:outputLabel value="User Name" />
-					    <h:inputText 
+					    <p:outputLabel value="User Name" />
+					    <p:inputText 
 					    	value="#{loginBean.user}" 
 					    	id="username" 
 					    	styleClass="form-control" 
 					    	label="username"
 					    	required="true">
 								<f:validateLength maximum="10" minimum="3"/>
-						</h:inputText>
-						<h:message for = "username" style="color:red"/>
+						</p:inputText>
+<!-- 					<h:message for = "username" style="color:red"/> -->
 					  </div>
 					  <div class="form-group">
-					    <h:outputLabel for="password" value="Password" />
-					    <h:inputSecret 
-					    	value="#{loginBean.password}" 
-					    	id="password"
-					    	styleClass="form-control" 
-					    	label="password"
-					    	required="true">
-								<f:validateLength maximum="10" minimum="3"/>
-							</h:inputSecret>
-							<h:message for = "password" style="color:red"/>
+					   	 	<p:outputLabel for="password" value="Password" />
+						    <p:password 
+						    	value="#{loginBean.password}" 
+						    	id="password"
+						    	styleClass="form-control" 
+						    	label="password"
+						    	required="true">
+									<f:validateLength maximum="10" minimum="3"/>
+							</p:password>
+<!-- 						<h:message for = "password" style="color:red"/> -->
 					  </div>
-					  <h:commandButton styleClass="btn btn-primary" action="${loginBean.login}" value="Login"></h:commandButton>
+					  <p:commandButton styleClass="ui-priority-primary" action="${loginBean.login}" value="Login" update="error"/>
 					</h:form>
 				</div>
 			</div>

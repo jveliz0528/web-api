@@ -10,6 +10,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import ar.com.eduacionit.app.domain.Producto;
+import ar.com.eduacionit.app.domain.TipoProducto;
 import ar.com.educacionit.dao.ProductoDAO;
 import ar.com.educacionit.dao.exceptions.DuplicateException;
 import ar.com.educacionit.dao.exceptions.GenericExeption;
@@ -206,5 +207,38 @@ public class ProductoDAOHibernateImpl implements ProductoDAO {
 			session.close();
 		}
 		return producto;
+	}
+
+	@Override
+	public List<TipoProducto> findTipoProductos() throws GenericExeption {
+		Session session = factory.getCurrentSession();
+
+		List<TipoProducto> tipoProductos = new ArrayList<TipoProducto>();
+		
+		try {
+
+			// All the action with DB via Hibernate
+			// must be located in one transaction.
+			// Start Transaction.
+			session.getTransaction().begin();
+
+			// Create an HQL statement, query the object.
+			String sql = "Select e from " + TipoProducto.class.getName() + " e ";
+
+			// Create Query object.
+			Query<TipoProducto> query = session.createQuery(sql);
+
+			// Execute query.
+			tipoProductos = query.getResultList();
+
+			// Commit data.
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+		}
+		return tipoProductos;
 	}
 }

@@ -25,8 +25,6 @@ public class LoginBean implements Serializable{
 	
 	private String password;
 	
-	private String error;
-
 	private UserService userService = new UserServiceImpl();
 	
 	public String login() {
@@ -43,7 +41,6 @@ public class LoginBean implements Serializable{
 				return "login-fail";
 			}
 		} catch (ServiceException e) {
-			error = e.getMessage();
 			return "login";
 		}
 	}
@@ -67,14 +64,6 @@ public class LoginBean implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getError() {
-		return error;
-	}
-
-	public void setError(String error) {
-		this.error = error;
 	}
 
 	public UsuarioBean getUsuarioBean() {

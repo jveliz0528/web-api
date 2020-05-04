@@ -13,6 +13,15 @@
 	<packaging>war</packaging>
 	<name>app-jsf-webapp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Repo</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -20,16 +29,19 @@
 			<version>4.13</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
-			<version>1.2</version>
+			<version>2.0</version>
 		</dependency>
+		<!-- 
+			Tomcat as being a barebones JSP/Servlet container doesn't support CDI out the box. 
+			Install a true CDI implementation on Tomcat. Weld is one of the available CDI implementations
+		-->
 		<dependency>
-			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<version>2.2.13.Final</version>
+		    <groupId>org.jboss.weld.servlet</groupId>
+		    <artifactId>weld-servlet-shaded</artifactId>
+		    <version>3.1.4.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
@@ -44,14 +56,9 @@
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
-			<version>2.2.11</version>
+			<version>2.4.0</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.ejb</groupId>
-			<artifactId>javax.ejb-api</artifactId>
-			<version>3.2</version>
-		</dependency>
-
+		<!-- dependencias propias -->
 		<dependency>
 			<groupId>ar.com.eduacionit</groupId>
 			<artifactId>app-domain</artifactId>
@@ -74,15 +81,25 @@
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.1</version>
 			<scope>provided</scope>
-		</dependency>
-		
+		</dependency>		
 		<!-- bootstrap -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>4.3.1</version>
-        </dependency>
-        
+        </dependency>      
+        <!-- primefaces8 -->  
+   		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>8.0</version>
+		</dependency>		
+		<!-- https://mvnrepository.com/artifact/org.primefaces.themes/all-themes -->
+		<dependency>
+		    <groupId>org.primefaces.themes</groupId>
+		    <artifactId>all-themes</artifactId>
+		    <version>1.0.10</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>app-jsf-webapp</finalName>

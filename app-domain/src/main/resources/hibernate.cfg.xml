@@ -33,6 +33,8 @@
 			class="ar.com.eduacionit.app.domain.User" />
 		<mapping	
 			class="ar.com.eduacionit.app.domain.Role" />
+		<mapping	
+			class="ar.com.eduacionit.app.domain.TipoProducto" />
 
 	</session-factory>
 
