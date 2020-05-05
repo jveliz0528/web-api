@@ -31,7 +31,7 @@ public class Producto implements Serializable {
 	private String codigo;
 	
 	@ManyToOne
-	@JoinColumn(name = "tipo_producto_id", referencedColumnName = "id")
+	@JoinColumn(name = "tipo_producto_id", referencedColumnName = "id", nullable = false)
 	private TipoProducto tipoProducto;
 	
 	public Producto() {

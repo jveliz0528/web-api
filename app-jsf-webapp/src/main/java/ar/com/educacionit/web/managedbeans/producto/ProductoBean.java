@@ -15,6 +15,7 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 
 import ar.com.eduacionit.app.domain.Producto;
+import ar.com.eduacionit.app.domain.TipoProducto;
 import ar.com.educacionit.services.ProductoService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ProductoServiceImpl;
@@ -58,6 +59,9 @@ public class ProductoBean implements Serializable{
 	
 	public String crearNuevoProducto() {
 		try {
+			TipoProducto tp = new TipoProducto();
+			tp.setId(this.tipoProducto);
+			this.producto.setTipoProducto(tp);
 			this.productoService.createProducto(this.producto);
 		} catch (ServiceException e) {
 			this.mensajeError = e.getMessage();
