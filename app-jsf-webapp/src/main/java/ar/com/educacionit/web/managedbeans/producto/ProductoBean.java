@@ -3,17 +3,13 @@ package ar.com.educacionit.web.managedbeans.producto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-
-import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
-
 import ar.com.eduacionit.app.domain.Producto;
 import ar.com.eduacionit.app.domain.TipoProducto;
 import ar.com.educacionit.services.ProductoService;
@@ -70,37 +66,6 @@ public class ProductoBean implements Serializable{
 		return "listado-productos";
 	}
 	
-	public String editarProducto(String codigo) {
-		try {
-			this.producto =  this.productoService.getProducto(codigo);
-		} catch (ServiceException e) {
-			return "nuevo-producto";
-		}
-		return "editar-producto";
-	}
-	
-	public String eliminarProducto(String codigo) {
-		try {
-			this.producto =  this.productoService.eliminarProducto(codigo);
-		} catch (ServiceException e) {
-			return "nuevo-producto";
-		}
-		return "listado-productos?faces-redirect=true";
-	}
-	
-	public String updateProducto() {
-		
-		try {
-			this.productoService.updateProducto(this.producto);
-		} catch (ServiceException e) {
-			e.printStackTrace();
-			return "editar-producto"; 
-		}
-		
-		return "listado-productos?feces-redirect=true";
-		
-	}
-
 	public Producto getProducto() {
 		return producto;
 	}
@@ -125,7 +90,6 @@ public class ProductoBean implements Serializable{
 		this.productos = productos;
 	}
 	
-	
 	//METODOS AGREGADOS PARA PRIMERFACES
 	public void onRowSelect(SelectEvent<Producto> event) {
 		this.producto = event.getObject();
@@ -134,8 +98,12 @@ public class ProductoBean implements Serializable{
 	public void onRowEdit(RowEditEvent<Producto> event) {
 		FacesMessage msg;
 		try {
+			if(!event.getObject().getTipoProducto().getId().equals(this.tipoProducto)) {
+				event.getObject().getTipoProducto().setId(this.tipoProducto);
+			}
 			this.productoService.updateProducto(event.getObject());
 			msg = new FacesMessage("Producto editado ", event.getObject().getId().toString());
+			this.productos = findProductos();
 		} catch (ServiceException e) {
 			msg = new FacesMessage(e.getMessage(), event.getObject().getId().toString());
 		}
@@ -145,16 +113,6 @@ public class ProductoBean implements Serializable{
     public void onRowCancel(RowEditEvent<Producto> event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled", event.getObject().getId().toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
-    public void onCellEdit(CellEditEvent event) {
-        Object oldValue = event.getOldValue();
-        Object newValue = event.getNewValue();
-         
-        if(newValue != null && !newValue.equals(oldValue)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
     }
     
 	public void eliminarProducto() {
@@ -178,5 +136,5 @@ public class ProductoBean implements Serializable{
 	public void setTipoProducto(Long tipoProducto) {
 		this.tipoProducto = tipoProducto;
 	}
-
+	
 }

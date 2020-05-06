@@ -54,7 +54,11 @@
 					 
 					        <p:column headerText="Precio">
 					            <p:cellEditor>
-									<f:facet name="output"><h:outputText value="#{producto.precio}" /></f:facet>
+									<f:facet name="output">
+										<h:outputText value="#{producto.precio}" >
+											<f:convertNumber pattern="$ ##,###.00"/>
+										</h:outputText>
+									</f:facet>
 					                <f:facet name="input">
 					                	<p:inputText value="#{producto.precio}" style="width:100%"/>
 					                </f:facet>
@@ -64,15 +68,16 @@
 					 		<p:column headerText="Tipo Producto">
 					            <p:cellEditor>
 					                <f:facet name="output">
-					                	<h:outputText value="#{producto.tipoProducto.descripcion}" />
+					                	<h:outputText value="#{producto.tipoProducto.descripcion}"/>
 					                </f:facet>
 					                <f:facet name="input">
-					                    <h:selectOneMenu value="#{producto.tipoProducto.id}" style="width:100%" >
-					                        <f:selectItems var="tipoProducto"
-					                           value="#{tipoProductoBean.tipoProductos}"
-					                           itemLabel="#{tipoProducto.descripcion}"
-					                           itemValue="#{tipoProducto.id}" />
-					                    </h:selectOneMenu>
+							            <p:selectOneMenu id="tipoProducto" value="#{productoBean.tipoProducto}" style="width:100%">
+							                <f:selectItems var="tipoProducto"
+							                	value="#{tipoProductoBean.tipoProductos}" 
+							                	itemLabel="#{tipoProducto.descripcion}" 
+							                	itemValue="#{tipoProducto.id}">
+							                </f:selectItems>
+							            </p:selectOneMenu>
 					                </f:facet>
 					            </p:cellEditor>
 					        </p:column>

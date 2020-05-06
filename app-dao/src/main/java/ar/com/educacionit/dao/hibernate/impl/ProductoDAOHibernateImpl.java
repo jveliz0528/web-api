@@ -157,6 +157,7 @@ public class ProductoDAOHibernateImpl implements ProductoDAO {
 					productoBean = productoOptional.get();
 					productoBean.setDescripcion(producto.getDescripcion());
 					productoBean.setPrecio(producto.getPrecio());
+					productoBean.setTipoProducto(producto.getTipoProducto());
 				}
 
 				session.saveOrUpdate(productoBean);
