@@ -20,4 +20,6 @@ public interface ProductoDAO {
 	public Producto deleteProducto(String codigoProducto) throws GenericExeption;
 	
 	public List<TipoProducto> findTipoProductos() throws GenericExeption;
+
+	public List<Producto> findByDescripcion(String desripcion) throws GenericExeption;;
 }

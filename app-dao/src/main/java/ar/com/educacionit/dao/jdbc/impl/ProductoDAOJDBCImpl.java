@@ -174,4 +174,10 @@ public class ProductoDAOJDBCImpl implements ProductoDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Producto> findByDescripcion(String desripcion) throws GenericExeption {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

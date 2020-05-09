@@ -82,4 +82,14 @@ public class ProductoServiceImpl implements ProductoService {
 			throw new ServiceException("Error inesperado consultando tipo de productos["+e.getMessage()+"]", e);
 		}
 	}
+	
+	@Override
+	public List<Producto> findProductosByDescripcion(String desripcion) throws ServiceException {
+		try {
+			return this.productoDao.findByDescripcion(desripcion);
+		} catch (GenericExeption e) {
+			e.printStackTrace();
+			throw new ServiceException("Error inesperado consultando tipo de productos["+e.getMessage()+"]", e);
+		}
+	}
 }

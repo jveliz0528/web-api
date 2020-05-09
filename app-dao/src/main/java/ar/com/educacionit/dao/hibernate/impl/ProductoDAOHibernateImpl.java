@@ -242,4 +242,39 @@ public class ProductoDAOHibernateImpl implements ProductoDAO {
 		}
 		return tipoProductos;
 	}
+	
+	@Override
+	public List<Producto> findByDescripcion(String desripcion) throws GenericExeption {
+		Session session = factory.getCurrentSession();
+
+		List<Producto> productos = new ArrayList<>();
+		
+		try {
+
+			// All the action with DB via Hibernate
+			// must be located in one transaction.
+			// Start Transaction.
+			session.getTransaction().begin();
+
+			// Create an HQL statement, query the object.
+			String sql = "Select e from " + Producto.class.getName() + " e where UPPER(e.descripcion) like :descripcion";
+
+			// Create Query object.
+			Query<Producto> query = session.createQuery(sql);
+
+			query.setParameter("descripcion", "%"+desripcion.toUpperCase()+"%");
+			
+			// Execute query.
+			productos = query.getResultList();
+
+			// Commit data.
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+		}
+		return productos;
+	}
 }
