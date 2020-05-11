@@ -80,7 +80,7 @@ public class ProductoResource {
 
 		} catch (ServiceException e) {
 			e.printStackTrace();
-			return Response.status(Status.BAD_REQUEST).build();
+			return Response.status(Status.BAD_REQUEST).entity(producto).build();
 		}
 	}
 

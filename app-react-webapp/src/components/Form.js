@@ -1,7 +1,12 @@
 import React from 'react';
+import Option from './Option';
 class Form extends React.Component {
 
     render() {
+
+        //obtenemos los tipos de productos
+        const tipoProducto = JSON.parse(localStorage.getItem('tipoProductos'));
+
         return (
             <div className="row mt-3">
                 <div className="col-6">
@@ -10,7 +15,7 @@ class Form extends React.Component {
                             <label htmlFor="bnombre">Nombre</label>
                             <input type="text" className="form-control" name="bnombre" id="bnombre"></input>
                         </div>
-                        <button className="btn btn-primary">Get Productos</button>
+                        <button className="btn btn-primary">Buscar Productos</button>
                     </form>
                 </div>
                 <div className="col-6">
@@ -29,9 +34,11 @@ class Form extends React.Component {
                         </div>
                         <div className="form-group">
                             <select className="custom-select" id="tipoProducto" aria-label="Example select with button addon">
-                                <option select="true">Choose...</option>
-                                <option value="1">Tipo 1</option>
-                                <option value="2">Tipo 2</option>
+                                    {
+                                        tipoProducto.map(function(tipo, index){
+                                            return <Option key={index} tipo={tipo}></Option>
+                                        })
+                                    }
                             </select>
                         </div>
                         <button className="btn btn-success">Grabar</button>
