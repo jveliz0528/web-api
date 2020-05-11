@@ -6,14 +6,15 @@ import React from 'react';
 class Producto extends React.Component {
 
     render() {
-        // console.log('Producto');
-        // console.log(this.props);
 
         return (
 
             <tr>
                 <th scope="row">
                     {this.props.producto.id}
+                </th>
+                <th>
+                    {this.props.producto.codigo}
                 </th>
                 <td>
                     {this.props.producto.descripcion}
@@ -27,7 +28,7 @@ class Producto extends React.Component {
                 <td>
                     <button 
                         className="btn btn-danger" 
-                        onClick={(e) =>this.props.deleteProducto(this.props.producto.id)}
+                        onClick={(e) =>this.props.deleteProducto(this.props.producto.codigo)}
                     >
                         Eliminar
                     </button>

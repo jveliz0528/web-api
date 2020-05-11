@@ -2,9 +2,8 @@ import React from 'react';
 import Producto from './Producto';
 
 class Listado extends React.Component {
+
     render() {
-        console.log('Listado props: ');
-        console.log(this.props);
         const _props = this.props;
         return (
             <div className="row">
@@ -15,9 +14,11 @@ class Listado extends React.Component {
                                 <thead>
                                     <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">Código</th>
                                     <th scope="col">Descripción</th>
                                     <th scope="col">Precio</th>
                                     <th scope="col">Tipo Produto</th>
+                                    <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>                        

@@ -14,10 +14,10 @@ class Form extends React.Component {
                     </form>
                 </div>
                 <div className="col-6">
-                    <form onSubmit={this.nuevoProducto}>                
+                    <form onSubmit={this.props.createProducto}>                
                         <div className="form-group">
-                            <label htmlFor="eid">Codigo</label>
-                            <input type="number" className="form-control" name="id" id="eid"></input>
+                            <label htmlFor="ecodigo">Codigo</label>
+                            <input type="text" className="form-control" name="codigo" id="ecodigo"></input>
                         </div>
                         <div className="form-group">
                             <label htmlFor="epassword">Nombre</label>
@@ -28,7 +28,7 @@ class Form extends React.Component {
                             <input type="text" className="form-control" name="precio" id="eprecio"></input>
                         </div>
                         <div className="form-group">
-                            <select className="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <select className="custom-select" id="tipoProducto" aria-label="Example select with button addon">
                                 <option select="true">Choose...</option>
                                 <option value="1">Tipo 1</option>
                                 <option value="2">Tipo 2</option>

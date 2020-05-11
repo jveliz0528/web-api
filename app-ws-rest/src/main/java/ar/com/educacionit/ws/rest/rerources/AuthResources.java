@@ -37,7 +37,7 @@ public class AuthResources {
 			if(user !=null && user.getPassword().equals(password)) {
 				String basic = user.getUsername()+":"+user.getPassword();
 			    String basicEncoded = new String(Base64.getEncoder().encode(basic.getBytes()));
-				response.header("Authorization", basicEncoded);
+				response.header("Access-Token", basicEncoded);
 			}else {
 				response = Response.status(Status.UNAUTHORIZED);
 			}

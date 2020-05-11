@@ -9,10 +9,19 @@ class Layout extends React.Component {
 
     constructor() {
         super();
+        let token = localStorage.getItem('Access-Token');
+
         //estado del componente Layout. contiene un atributo productos vacio
         this.state = {
-            logged: false,
-            productos: []
+            logged: token != null,
+            productos:[]
+        }
+    }
+    
+    componentDidMount() {
+        console.log('componentDidMount');
+        if(this.state.logged) {
+            this.findAllProductos();
         }
     }
 
@@ -22,31 +31,27 @@ class Layout extends React.Component {
         //axios 
         axios.post(
             `http://localhost:8080/app-ws-rest/api/auth?username=${event.target.elements.username.value}&password=${event.target.elements.password.value}`,
-            {},
-            {
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            }
-        )
-            .then(res => {
+        ).then(res => {
 
-                //lamada nuevamente a la lista de productos
-                axios.get(`http://localhost:8080/app-ws-rest/api/productos`)
-                    .then(res => {
-                        const productos = res.data;
-                        this.setState(
-                            {
-                                logged: true,
-                                productos: productos
-                            }
-                        );
-                    }
+            localStorage.setItem('Access-Token', res.headers['access-token']);
+            //lamada nuevamente a la lista de productos
+            axios.get(`http://localhost:8080/app-ws-rest/api/productos`)
+                .then(res => {
+                    const productos = res.data;
+                    this.setState(
+                        {
+                            logged: true,
+                            productos: productos
+                        }
+                    );
+                }
                 );
-            })
+        })
     }
 
     logout = async (e) => {
         e.preventDefault();
-
+        localStorage.removeItem('Access-Token');
         this.setState(
             {
                 logged: false,
@@ -62,10 +67,10 @@ class Layout extends React.Component {
 
         const nombre = e.target.elements.bnombre.value;
         let api_call;
-        if(nombre===""){
-          api_call = `http://localhost:8080/app-ws-rest/api/productos`;
-        }else {
-          api_call = `http://localhost:8080/app-ws-rest/api/productos/filtro/${nombre}`;
+        if (nombre === "") {
+            api_call = `http://localhost:8080/app-ws-rest/api/productos`;
+        } else {
+            api_call = `http://localhost:8080/app-ws-rest/api/productos/filtro/${nombre}`;
         }
         axios.get(api_call)
             .then(res => {
@@ -77,43 +82,68 @@ class Layout extends React.Component {
                 );
                 console.log(this.state);
             }
-        );
+            );
     }
 
+    findAllProductos() {
 
-    deleteProducto(producto) {
-        console.log(producto);
+        let api_call = `http://localhost:8080/app-ws-rest/api/productos`;
+
+        axios.get(api_call)
+            .then(res => {
+                const productos = res.data;
+                this.setState(
+                    {
+                        productos: productos
+                    }
+                );
+            }
+            );
+    }
+
+    deleteProducto = async (producto) => {
+
+        if (!window.confirm('Desea eliminar el producto')) {
+            return false
+        }
+        axios.delete(
+            'http://localhost:8080/app-ws-rest/api/productos/' + producto,
+            {
+                headers: {
+                    Authorization: 'Basic ' + localStorage.getItem('Access-Token'),
+                }
+            }
+        ).then(res => {
+            this.findAllProductos();
+        });
     }
 
     createProducto = async (e) => {
+
         e.preventDefault();
+
         let jsonObject = {
-            id: e.target.elements.id.value,
-            nombre: e.target.elements.nombre.value,
-            precio: e.target.elements.precio.value
+            codigo: e.target.elements.codigo.value,
+            descripcion: e.target.elements.nombre.value,
+            precio: e.target.elements.precio.value,
+            tipoProducto: {
+                id: e.target.elements.tipoProducto.value
+            }
         }
-        console.log(jsonObject);
 
-        // create a new XMLHttpRequest
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080/app-ws-rest/api/productos');
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-        xhr.send(JSON.stringify(jsonObject));
-
-        //actualizo la lista de producros
-        this.setState({
-            productos: this.findProductos()
-        });
-
-        /*
-        const response = await axios.post(
-            'http://localhost:8080/app-ws-rest-server/api/productos',
+        axios.post(
+            'http://localhost:8080/app-ws-rest/api/productos',
             jsonObject,
-            { headers: { 'Content-Type': 'application/json' } }
-            );
-        */
-
+            {
+                headers: {
+                    Authorization: 'Basic ' + localStorage.getItem('Access-Token'),
+                }
+            }
+        ).then(res => {
+            this.findAllProductos();
+        });
     }
+
     render() {
         return (
             <div className="container-fluid">
@@ -133,6 +163,8 @@ class Layout extends React.Component {
                     this.state.logged &&
                     <Form
                         productos={this.state.productos}
+                        findProductos={this.findProductos}
+                        createProducto={this.createProducto}
                         deleteProducto={this.deleteProducto}>
                     </Form>
                 }
