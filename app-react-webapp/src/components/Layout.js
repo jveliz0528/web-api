@@ -21,14 +21,14 @@ class Layout extends React.Component {
             productos:[]
         }
     }
-   /* 
+    
     componentDidMount() {
         console.log('componentDidMount');
         if(this.state.logged) {
             this.findAllProductos();
         }
     }
-*/
+
     login = event => {
 
         event.preventDefault();
