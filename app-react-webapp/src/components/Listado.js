@@ -24,7 +24,7 @@ class Listado extends React.Component {
                                 <tbody>                        
                                     {
                                         _props.productos.map(function(producto, index){
-                                            return <Producto deleteProducto={_props.deleteProducto} key={index} producto={producto}></Producto>
+                                            return <Producto deleteProducto={_props.deleteProducto} editarProducto={_props.editarProducto} key={index} producto={producto}></Producto>
                                         })
                                     }
                                 </tbody>

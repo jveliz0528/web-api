@@ -32,11 +32,12 @@ class Layout extends React.Component {
     login = event => {
 
         event.preventDefault();
-
+        debugger;
         const _this = this;
         axios.post(
             `http://localhost:8080/app-ws-rest/api/auth?username=${event.target.elements.username.value}&password=${event.target.elements.password.value}`,
         ).then(res => {
+            debugger;
             localStorage.setItem('Access-Token', res.headers['access-token']);
             
             //cargo los tipo de productos
@@ -46,7 +47,7 @@ class Layout extends React.Component {
                     localStorage.setItem('tipoProductos', JSON.stringify(tipoProductos));
 
                     this.findAllProductos();
-            
+                    //limpiar mensajeria: borrar el alerta
                     this.setState({
                         mensaje: null
                     });
@@ -118,10 +119,11 @@ class Layout extends React.Component {
 
     deleteProducto = async (producto) => {
 
+        // debugger;
         if (!window.confirm('Desea eliminar el producto')) {
             return false
         }
-
+        const _this = this;
         axios.delete('http://localhost:8080/app-ws-rest/api/productos/' + producto,
             {
                 headers: {
@@ -131,7 +133,12 @@ class Layout extends React.Component {
         ).then(res => {
             this.findAllProductos();
         }).catch(function (error) {
-            alert("No se ha podido eliminar el producto...");
+            _this.setState(
+                {
+                    mensaje: "No se ha podido eliminar el producto"
+                }
+            );
+            // alert("No se ha podido eliminar el producto...");
         });
     }
 
@@ -163,6 +170,32 @@ class Layout extends React.Component {
             _this.setState(
                 {
                     mensaje: "No se ha podido dar de alta el producto"
+                }
+            );
+            setTimeout(()=>_this.limpiarMensaje(_this), 3500);
+        });
+    }
+
+    //EDITAR PRODUCTO
+    editarProducto = async (producto) => {
+       console.log(producto);
+        producto.descripcion = producto.descripcion + ' editado'
+        const _this = this;
+        axios.put(
+            'http://localhost:8080/app-ws-rest/api/productos',
+            producto,
+            {
+                headers: {
+                    Authorization: 'Basic ' + localStorage.getItem('Access-Token'),
+                }
+            }
+        ).then(res => {
+            this.findAllProductos();
+        }).catch(function (error) {
+            // alert("No se ha podido crear el producto");
+            _this.setState(
+                {
+                    mensaje: "No se ha podido editar el producto"
                 }
             );
             setTimeout(()=>_this.limpiarMensaje(_this), 3500);
@@ -213,6 +246,7 @@ class Layout extends React.Component {
                     this.state.logged &&
                     <Listado
                         productos={this.state.productos}
+                        editarProducto={this.editarProducto}
                         deleteProducto={this.deleteProducto}>
                     </Listado>
                 }

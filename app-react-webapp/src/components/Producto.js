@@ -6,6 +6,9 @@ import React from 'react';
 class Producto extends React.Component {
 
     render() {
+        console.log('Producto render');
+        console.log(this.props);
+
 
         return (
 
@@ -31,6 +34,13 @@ class Producto extends React.Component {
                         onClick={(e) =>this.props.deleteProducto(this.props.producto.codigo)}
                     >
                         Eliminar
+                    </button>
+
+                    <button 
+                        className="btn btn-primary ml-2" 
+                        onClick={(e) =>this.props.editarProducto(this.props.producto)}
+                    >
+                        Editar
                     </button>
                 </td>
             </tr>
