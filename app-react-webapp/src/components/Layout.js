@@ -23,7 +23,7 @@ class Layout extends React.Component {
     }
     
     componentDidMount() {
-        console.log('componentDidMount');
+        // console.log('componentDidMount');
         if(this.state.logged) {
             this.findAllProductos();
         }
@@ -32,12 +32,10 @@ class Layout extends React.Component {
     login = event => {
 
         event.preventDefault();
-        debugger;
         const _this = this;
         axios.post(
             `http://localhost:8080/app-ws-rest/api/auth?username=${event.target.elements.username.value}&password=${event.target.elements.password.value}`,
         ).then(res => {
-            debugger;
             localStorage.setItem('Access-Token', res.headers['access-token']);
             
             //cargo los tipo de productos

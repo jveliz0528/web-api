@@ -6,9 +6,8 @@ import React from 'react';
 class Producto extends React.Component {
 
     render() {
-        console.log('Producto render');
-        console.log(this.props);
-
+        // console.log('Producto render');
+        // console.log(this.props);
 
         return (
 
