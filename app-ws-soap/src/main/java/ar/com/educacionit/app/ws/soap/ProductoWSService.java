@@ -5,7 +5,7 @@ import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import ar.com.eduacionit.app.domain.Producto;
+import ar.com.educacionit.app.domain.Producto;
 import ar.com.educacionit.app.ws.soap.dto.CreateProductoDTO;
 
 @WebService

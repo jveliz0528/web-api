@@ -8,7 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import ar.com.eduacionit.app.domain.User;
+import ar.com.educacionit.app.domain.User;
 
 @Named
 @SessionScoped

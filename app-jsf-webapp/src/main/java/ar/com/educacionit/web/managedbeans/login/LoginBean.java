@@ -6,7 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import ar.com.eduacionit.app.domain.User;
+import ar.com.educacionit.app.domain.User;
 import ar.com.educacionit.services.UserService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.UserServiceImpl;

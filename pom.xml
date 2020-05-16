@@ -29,7 +29,8 @@
 		<module>app-ws-rest</module>
 		<module>app-ws-rest-client</module>
 		<module>app-ws-meli-client</module>
-    <module>app-jsf-webapp</module>
-    <module>app-rest-springboot</module>
+    	<module>app-jsf-webapp</module>
+   		<module>app-rest-springboot</module>
+<!--    <module>app-springmvc</module> -->
   </modules>
 </project>

@@ -10,8 +10,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
-import ar.com.eduacionit.app.domain.Producto;
-import ar.com.eduacionit.app.domain.TipoProducto;
+
+import ar.com.educacionit.app.domain.Producto;
+import ar.com.educacionit.app.domain.TipoProducto;
 import ar.com.educacionit.services.ProductoService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ProductoServiceImpl;

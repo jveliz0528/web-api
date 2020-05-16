@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import ar.com.eduacionit.app.domain.User;
+import ar.com.educacionit.app.domain.User;
 import ar.com.educacionit.dao.exceptions.GenericExeption;
 import ar.com.educacionit.dao.hibernate.HibernateBaseRepository;
 import ar.com.educacionit.dao.user.UserRepository;

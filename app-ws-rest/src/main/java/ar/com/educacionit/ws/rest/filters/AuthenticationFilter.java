@@ -22,8 +22,8 @@ import javax.ws.rs.ext.Provider;
 
 import org.glassfish.jersey.internal.util.Base64;
 
-import ar.com.eduacionit.app.domain.Role;
-import ar.com.eduacionit.app.domain.User;
+import ar.com.educacionit.app.domain.Role;
+import ar.com.educacionit.app.domain.User;
 import ar.com.educacionit.services.UserService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.UserServiceImpl;

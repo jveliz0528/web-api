@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
-import ar.com.eduacionit.app.domain.User;
+import ar.com.educacionit.app.domain.User;
 import ar.com.educacionit.services.UserService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.UserServiceImpl;

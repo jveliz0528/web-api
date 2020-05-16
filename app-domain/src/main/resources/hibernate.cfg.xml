@@ -28,13 +28,13 @@
 		<property name="show_sql">true</property>
 
 		<mapping
-			class="ar.com.eduacionit.app.domain.Producto" />
+			class="ar.com.educacionit.app.domain.Producto" />
 		<mapping
-			class="ar.com.eduacionit.app.domain.User" />
+			class="ar.com.educacionit.app.domain.User" />
 		<mapping	
-			class="ar.com.eduacionit.app.domain.Role" />
+			class="ar.com.educacionit.app.domain.Role" />
 		<mapping	
-			class="ar.com.eduacionit.app.domain.TipoProducto" />
+			class="ar.com.educacionit.app.domain.TipoProducto" />
 
 	</session-factory>
 

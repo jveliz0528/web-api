@@ -1,4 +1,4 @@
-<%@page import="ar.com.eduacionit.app.domain.Producto"%>
+<%@page import="ar.com.educacionit.app.spring.domain.Producto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -29,10 +29,10 @@
 							</tr>
 						</thead>
 						<%
-							List<Producto> productos = (List<Producto>) session.getAttribute("productos");
+							List<ProductoVO> productos = (List<ProductoVO>) session.getAttribute("productos");
 						%>
 						<%
-							for (Producto producto : productos) {
+							for (ProductoVO producto : productos) {
 						%>
 						<tr>
 							<th scope="row"><%=producto.getId()%></td>

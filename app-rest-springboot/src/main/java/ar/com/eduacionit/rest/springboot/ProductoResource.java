@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.com.eduacionit.app.domain.Producto;
+import ar.com.educacionit.app.domain.Producto;
 import ar.com.educacionit.services.ProductoService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ProductoServiceImpl;

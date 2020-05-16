@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+	<title>Crear Nuevo Producto</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	<div align="center">
+		<h1>Nuevo Producto</h1>
+		<a th:href="@{'/list'}">Volver a Listado</a>  | <a th:href="@{'/logout'}">Logout</a>
+		<br/><br/>
+		<form 
+			action="#" 
+			th:action="@{/save}" 
+			th:object="${producto}"
+			method="post">
+			<table>
+				<tr>
+					<td>
+						Codigo:
+					</td>
+					<td>
+						<input type="text" th:field="*{codigo}"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Descripcion:
+					</td>
+					<td>
+						<input type="text" th:field="*{descripcion}" required="required" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Precio:
+					</td>
+					<td>
+						<input type="number" th:field="*{precio}" required="required"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Tipo Producto:
+					</td>
+					<td>
+						<select th:field="*{tipoProducto.id}" required="required">
+							<option 
+								th:each="tipo : ${tiposProductos}"
+								th:value="${tipo.id}"
+								th:text="${tipo.descripcion}">
+						</select>
+					</td>
+				</tr>								
+				<tr>
+					<td colspan="2">
+						<button type="submit">Grabar</button> 
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

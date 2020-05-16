@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import ar.com.eduacionit.app.domain.Producto;
+import ar.com.educacionit.app.domain.Producto;
 import ar.com.educacionit.services.ProductoService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ProductoServiceImpl;

@@ -2,8 +2,8 @@ package ar.com.educacionit.services;
 
 import java.util.List;
 
-import ar.com.eduacionit.app.domain.Producto;
-import ar.com.eduacionit.app.domain.TipoProducto;
+import ar.com.educacionit.app.domain.Producto;
+import ar.com.educacionit.app.domain.TipoProducto;
 import ar.com.educacionit.services.exceptions.ServiceException;
 
 public interface ProductoService {

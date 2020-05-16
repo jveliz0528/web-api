@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ar.com.eduacionit.app.domain.User;
+import ar.com.educacionit.app.domain.User;
 import ar.com.educacionit.web.managedbeans.usuario.UsuarioBean;
 
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.xhtml" })

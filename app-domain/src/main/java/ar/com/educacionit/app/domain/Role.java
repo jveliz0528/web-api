@@ -1,4 +1,4 @@
-package ar.com.eduacionit.app.domain;
+package ar.com.educacionit.app.domain;
 
 import java.io.Serializable;
 

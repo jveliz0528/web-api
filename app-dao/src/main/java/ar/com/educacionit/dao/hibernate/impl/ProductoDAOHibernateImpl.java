@@ -9,8 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
-import ar.com.eduacionit.app.domain.Producto;
-import ar.com.eduacionit.app.domain.TipoProducto;
+import ar.com.educacionit.app.domain.Producto;
+import ar.com.educacionit.app.domain.TipoProducto;
 import ar.com.educacionit.dao.ProductoDAO;
 import ar.com.educacionit.dao.exceptions.DuplicateException;
 import ar.com.educacionit.dao.exceptions.GenericExeption;

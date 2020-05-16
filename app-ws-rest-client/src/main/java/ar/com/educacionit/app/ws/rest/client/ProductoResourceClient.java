@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.logging.LoggingFeature;
 
-import ar.com.eduacionit.app.domain.Producto;
+import ar.com.educacionit.app.domain.Producto;
 
 
 public class ProductoResourceClient {

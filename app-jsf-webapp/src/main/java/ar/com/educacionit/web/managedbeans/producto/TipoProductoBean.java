@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import ar.com.eduacionit.app.domain.TipoProducto;
+import ar.com.educacionit.app.domain.TipoProducto;
 import ar.com.educacionit.services.ProductoService;
 import ar.com.educacionit.services.exceptions.ServiceException;
 import ar.com.educacionit.services.impl.ProductoServiceImpl;
